@@ -1,7 +1,7 @@
 package com.coders.travelx.controller;
 
 import com.coders.travelx.S3.StorageService;
-import com.coders.travelx.Service.ImageService;
+import com.coders.travelx.service.ImageService;
 import com.coders.travelx.model.Blog;
 import com.coders.travelx.repository.BlogRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 @RestController
-@RequestMapping("api/v1/admin")
+@RequestMapping("api/v1/admintest")
 public class AdminController {
 
     @Autowired
@@ -46,6 +46,7 @@ public class AdminController {
 
 
         }
+        return "upload successfully";
 
 
 

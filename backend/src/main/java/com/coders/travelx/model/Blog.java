@@ -27,6 +27,10 @@ public class Blog {
     @OneToMany(mappedBy = "blog")
     private List<Image> images = new ArrayList<>();
 
+    public void addImages(Image image) {
+        this.images.add(image);
+    }
+
 
 
 
