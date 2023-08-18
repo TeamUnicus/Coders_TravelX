@@ -18,7 +18,7 @@ public class Image {
 
     @ManyToOne()
     @JoinColumn(
-            name = "place_id",
+            name = "blog_id",
             referencedColumnName = "name"
     )@JsonIgnore
     private Blog blog;

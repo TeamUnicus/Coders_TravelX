@@ -24,6 +24,8 @@ public class Blog {
     private String distance;
     private String nRestuarants;
 
+    private String location;
+
     @OneToMany(mappedBy = "blog")
     private List<Image> images = new ArrayList<>();
 
