@@ -1,6 +1,5 @@
 package com.coders.travelx.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,7 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Place {
+public class Blog {
     @Id
     private String name;
 
@@ -25,7 +24,7 @@ public class Place {
     private String distance;
     private String nRestuarants;
 
-    @OneToMany(mappedBy = "place")
+    @OneToMany(mappedBy = "blog")
     private List<Image> images = new ArrayList<>();
 
 

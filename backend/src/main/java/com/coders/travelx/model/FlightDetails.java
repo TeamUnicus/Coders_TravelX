@@ -1,9 +1,6 @@
 package com.coders.travelx.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,9 +19,20 @@ public class FlightDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    private int[] seats;
 
     private Date departureTime;
     private Date arrivalTime;
+
+    private String flightName;
+
+    @OneToMany(mappedBy = "flightDetails")
+    private List<Seats> seats = new ArrayList<>();
+
+    public void addSeats(Seats seat){
+        this.seats.add(seat);
+    }
+
+
+
 
 }

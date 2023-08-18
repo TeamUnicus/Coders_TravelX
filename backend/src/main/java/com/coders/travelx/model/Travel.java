@@ -22,6 +22,6 @@ public class Travel {
 
     private String destination;
     private String start;
-    private int price;
+
 
 }

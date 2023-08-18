@@ -15,17 +15,17 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Image {
+public class Seats {
     @Id
-    private String fileName;
+    private String id;
+    private boolean available = true;
 
     @ManyToOne()
     @JoinColumn(
-            name = "place_id",
-            referencedColumnName = "name"
+            name = "flight_id",
+            referencedColumnName = "id"
     )@JsonIgnore
-    private Blog blog;
-
+    private FlightDetails flightDetails;
 
 
 }
