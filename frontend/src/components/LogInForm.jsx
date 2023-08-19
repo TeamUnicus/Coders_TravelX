@@ -8,12 +8,10 @@ import UseAuth from './hooks/UseAuth';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 
 import { blue } from '@mui/material/colors';
-import UserService from '../service/UserService';
+import LoginService from '../service/LoginService';
 
-
-
-const SignupForm = () => {
-    const { setAuth } = UseAuth();
+const LogInForm = () => {
+    const { auth, setAuth } = UseAuth();
     const location = useLocation();
     const from = location.state?.from?.pathname || "/";
   const isNonMobile = useMediaQuery("(min-width:600px)");
@@ -26,11 +24,32 @@ const SignupForm = () => {
 
 
   const handleFormSubmit = (values, {resetForm}) => {
+   
     console.log(values);
-    UserService.save(values)
+    LoginService.login(values)
+    
     .then((response)=>{
-        console.log(response);
-        setSuccessMessage("Verification link has been sent to your email")
+        const accessToken = response.accessToken;
+        const roles = response.roles;
+        const name = response.userName;
+        
+        setAuth({ "userName": name, "roles": roles, "accessToken": accessToken });
+        const currentURL = window.location.href;
+        const parts = from.split("/");
+        const login = parts[1];
+        console.log(response.companyName);
+        const convertedRole = roles.substring(5).toLowerCase();
+        const capitalRole = convertedRole.charAt(0).toUpperCase() + convertedRole.slice(1);
+        if (convertedRole!=login){
+            setErrorMessage(capitalRole+" dont have acces to "+login+" content");
+          
+        }if(accessToken != ""){
+            if (roles=="USER"){
+              navigate("/")
+            }else{
+            navigate("/");
+            }
+        }
     }).catch((error)=>{
         setErrorMessage("Invalid username or email address")
         console.log(error);
@@ -41,7 +60,7 @@ const SignupForm = () => {
   
   return (
     <Box m="10px">
-      <Typography variant='h6' sx={{color:'#1a237e', fontWeight:'bold'}}>SIGNUP</Typography>
+     <Typography variant='h6' sx={{color:'#1a237e', fontWeight:'bold'}}>Login</Typography>
       
         {errorMessage && (
         <Box mt="50px">
@@ -79,34 +98,6 @@ const SignupForm = () => {
                 fullWidth
                 variant="filled"
                 type="text"
-                label="First Name"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.firstName}
-                name="userName"
-                error={touched.firstname && errors.firstname}
-                helperText={touched.firstname && errors.firstname}
-                sx={{ gridColumn: "span 4" }}
-              />
-
-            <TextField
-                fullWidth
-                variant="filled"
-                type="text"
-                label="Last Name"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.lastname}
-                name="lastname"
-                error={touched.lastname && errors.lastname}
-                helperText={touched.lastname && errors.lastname}
-                sx={{ gridColumn: "span 4" }}
-              />
-
-              <TextField
-                fullWidth
-                variant="filled"
-                type="text"
                 label="Email"
                 onBlur={handleBlur}
                 onChange={handleChange}
@@ -116,6 +107,7 @@ const SignupForm = () => {
                 helperText={touched.email && errors.email}
                 sx={{ gridColumn: "span 4" }}
               />
+             
               <TextField
                 fullWidth
                 variant="filled"
@@ -138,7 +130,7 @@ const SignupForm = () => {
             <Box display="grid" color="primary" variant="contained">
               <Button type="submit" color='secondary' variant='contained' >
             
-                SignUp
+                LOGIN
               </Button>
             </Box>
           </form>
@@ -148,22 +140,18 @@ const SignupForm = () => {
   );
 };
 const checkoutSchema = yup.object().shape({
-    firstname: yup.string().required("First Name is required"),
-    lastname: yup.string().required("Last Name is required"),
+    email: yup.string().required("User Name is required"),
     password: yup.string().required("Password is required"),
-    email: yup.string().email("Invalid email format").required("Email is required")
-
- 
+    
   
 });
 const initialValues = {
    
-    firstname: "",
-    lastname: "",
+    userName: "",
     password: "",
-    email: "",
-    roles: "USER"
+    
     
 };
 
-export default SignupForm
+
+export default LogInForm
