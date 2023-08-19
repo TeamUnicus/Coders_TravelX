@@ -11,7 +11,7 @@ import java.util.Optional;
 public interface TravelRepository extends JpaRepository<Travel,Long> {
 
     @Query(
-            value = "select * from from travel where start=?1 and destination=?2",
+            value = "select *  from travel where start=?1 and destination=?2",
             nativeQuery = true
     )
     Optional<Travel> findByDestiAndStart(String start, String destination);

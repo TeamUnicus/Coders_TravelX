@@ -47,7 +47,7 @@ public class TravelServiceImpl implements TravelService{
     public FlightDetails saveFlightDetails(NewFlightDto newFlightDto, Travel travel) {
         FlightDetails flightDetails = new FlightDetails();
 
-        String dateFormatPattern = "yyyy-MM-dd";
+        String dateFormatPattern = "yyyy/MM/dd";
         SimpleDateFormat dateFormat = new SimpleDateFormat(dateFormatPattern);
 
         try {
@@ -88,6 +88,7 @@ public class TravelServiceImpl implements TravelService{
                 seatId.setName(seatName);
                 Seat seat = new Seat();
                 seat.setSeatId(seatId);
+                seat.setFlightDetails(flightDetails);
                 seatRepository.save(seat);
                 flightDetails.addSeats(seat);
                 flightDetailsRepository.save(flightDetails);
