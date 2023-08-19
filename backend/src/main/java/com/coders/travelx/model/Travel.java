@@ -26,5 +26,9 @@ public class Travel {
     @OneToMany(mappedBy = "travel")
     private List<FlightDetails> flightDetails = new ArrayList<>();
 
+    public void addFlightDetails(FlightDetails flightDetail){
+        this.flightDetails.add(flightDetail);
+    }
+
 
 }

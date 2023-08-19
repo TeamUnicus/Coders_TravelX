@@ -2,11 +2,8 @@ package com.coders.travelx.dto;
 
 import lombok.Data;
 
-
 @Data
-public class NewFlightDto {
-    private String destination;
-    private String start;
+public class TravelDetailResponse {
     private String departureDate;
     private String arrivalDate;
     private String departureHour;
@@ -14,8 +11,7 @@ public class NewFlightDto {
     private String arrivalMinute;
     private String arrivalHour;
     private String flightName;
-    private String seatRows;
-    private String seatCols;
     private String price;
+
 
 }

@@ -60,7 +60,9 @@ public class SecurityConfiguration {
                         "/swagger-ui.html",
                         "/api/v1/ml/**",
                         "/file/upload",
-                        "/api/v1/admintest/**"
+                        "/api/v1/admintest/**",
+                        "/api/v1/travel/**"
+
                 )
                 .permitAll()
 

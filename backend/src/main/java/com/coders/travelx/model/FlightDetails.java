@@ -25,9 +25,10 @@ public class FlightDetails {
     private Date arrivalTime;
 
     private String flightName;
+    private String price;
 
     @OneToMany(mappedBy = "flightDetails")
-    private List<Seats> seats = new ArrayList<>();
+    private List<Seat> seats = new ArrayList<>();
 
     @ManyToOne()
     @JoinColumn(
@@ -36,7 +37,7 @@ public class FlightDetails {
     )@JsonIgnore
     private Travel travel;
 
-    public void addSeats(Seats seat){
+    public void addSeats(Seat seat){
         this.seats.add(seat);
     }
 
