@@ -34,8 +34,8 @@ public class TravelServiceImpl implements TravelService{
                 .findByDestiAndStart(newFlightDto.getStart(), newFlightDto.getDestination());
         Travel travel = travelOptional.orElseGet(()->{
             Travel travelNew = new Travel();
-            travelNew.setDestination(newFlightDto.getDestination());
-            travelNew.setStart(newFlightDto.getStart());
+            travelNew.setDestination(newFlightDto.getDestination().toLowerCase());
+            travelNew.setStart(newFlightDto.getStart().toLowerCase());
             return travelNew;
 
         });
@@ -107,7 +107,7 @@ public class TravelServiceImpl implements TravelService{
 
     @Override
     public List<TravelDetailResponse> searchByStartAndDestination(String start, String destination) {
-        Optional<Travel> travelOptional = travelRepository.findByDestiAndStart(start, destination);
+        Optional<Travel> travelOptional = travelRepository.findByDestiAndStart(start.toLowerCase(), destination.toLowerCase());
         Travel travel = travelOptional.orElseThrow(()->new NoSuchElementException("no flights available"));
         List<TravelDetailResponse> travelDetailResponsesList =new ArrayList<>();
         for (FlightDetails flight: travel.getFlightDetails()
