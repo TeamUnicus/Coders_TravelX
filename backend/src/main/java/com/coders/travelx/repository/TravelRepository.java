@@ -15,4 +15,7 @@ public interface TravelRepository extends JpaRepository<Travel,Long> {
             nativeQuery = true
     )
     Optional<Travel> findByDestiAndStart(String start, String destination);
+
+
+
 }

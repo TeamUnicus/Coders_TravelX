@@ -25,6 +25,7 @@ public class FlightDetails {
     private Date arrivalTime;
 
     private String flightName;
+    private String price;
 
     @OneToMany(mappedBy = "flightDetails")
     private List<Seat> seats = new ArrayList<>();

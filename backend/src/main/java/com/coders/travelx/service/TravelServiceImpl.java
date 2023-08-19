@@ -1,6 +1,7 @@
 package com.coders.travelx.service;
 
 import com.coders.travelx.dto.NewFlightDto;
+import com.coders.travelx.dto.TravelDetailResponse;
 import com.coders.travelx.model.FlightDetails;
 import com.coders.travelx.model.Seat;
 import com.coders.travelx.model.SeatId;
@@ -13,8 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class TravelServiceImpl implements TravelService{
@@ -70,6 +70,7 @@ public class TravelServiceImpl implements TravelService{
         }
         flightDetails.setFlightName(newFlightDto.getFlightName());
         flightDetails.setTravel(travel);
+        flightDetails.setPrice(newFlightDto.getPrice());
         travel.addFlightDetails(flightDetails);
         travelRepository.save(travel);
         flightDetailsRepository.save(flightDetails);
@@ -100,6 +101,32 @@ public class TravelServiceImpl implements TravelService{
 
 
         return flightDetails;
+
+
+    }
+
+    @Override
+    public List<TravelDetailResponse> searchByStartAndDestination(String start, String destination) {
+        Optional<Travel> travelOptional = travelRepository.findByDestiAndStart(start, destination);
+        Travel travel = travelOptional.orElseThrow(()->new NoSuchElementException("no flights available"));
+        List<TravelDetailResponse> travelDetailResponsesList =new ArrayList<>();
+        for (FlightDetails flight: travel.getFlightDetails()
+             ) {
+            TravelDetailResponse travelDetailResponse = new TravelDetailResponse();
+            travelDetailResponse.setArrivalDate(String.valueOf(flight.getArrivalTime().getDate()));
+            travelDetailResponse.setArrivalHour(String.valueOf(flight.getArrivalTime().getHours()));
+            travelDetailResponse.setDepartureDate(String.valueOf(flight.getDepartureTime().getDate()));
+            travelDetailResponse.setDepartureHour(String.valueOf(flight.getDepartureTime().getHours()));
+            travelDetailResponse.setArrivalMinute(String.valueOf(flight.getArrivalTime().getMinutes()));
+            travelDetailResponse.setDepartureMinute(String.valueOf(flight.getDepartureTime().getMinutes()));
+            travelDetailResponse.setFlightName(flight.getFlightName());
+            travelDetailResponse.setPrice(flight.getPrice());
+
+            travelDetailResponsesList.add(travelDetailResponse);
+
+
+
+        }return travelDetailResponsesList;
 
 
     }
