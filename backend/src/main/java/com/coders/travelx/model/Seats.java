@@ -1,10 +1,7 @@
 package com.coders.travelx.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,9 +13,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 public class Seats {
-    @Id
-    private String id;
+
+    @EmbeddedId
+    private SeatId seatId;
+
     private boolean available = true;
+
 
     @ManyToOne()
     @JoinColumn(

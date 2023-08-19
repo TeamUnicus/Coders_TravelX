@@ -1,14 +1,15 @@
 package com.coders.travelx.controller;
 
 import com.coders.travelx.S3.StorageService;
+import com.coders.travelx.dto.NewFlightDto;
+import com.coders.travelx.model.FlightDetails;
+import com.coders.travelx.model.Travel;
 import com.coders.travelx.service.ImageService;
 import com.coders.travelx.model.Blog;
 import com.coders.travelx.repository.BlogRepository;
+import com.coders.travelx.service.TravelService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 @RestController
@@ -23,6 +24,9 @@ public class AdminController {
 
     @Autowired
     private ImageService imageService;
+
+    @Autowired
+    private TravelService travelService;
 
     @PostMapping("/addBlog")
     public String addBlog(@RequestParam("file") MultipartFile[] files,
@@ -47,6 +51,15 @@ public class AdminController {
 
         }
         return "upload successfully";
+
+
+
+    }
+
+    @PostMapping("/addFlightDetails")
+    public String addFlightDetails(@RequestBody NewFlightDto newFlightDto){
+        Travel travel = travelService.save(newFlightDto);
+        FlightDetails flightDetails = travelService.saveFlightDetails(newFlightDto);
 
 
 

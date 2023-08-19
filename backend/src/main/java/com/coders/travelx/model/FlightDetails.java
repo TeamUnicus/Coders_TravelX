@@ -1,5 +1,6 @@
 package com.coders.travelx.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -27,6 +28,13 @@ public class FlightDetails {
 
     @OneToMany(mappedBy = "flightDetails")
     private List<Seats> seats = new ArrayList<>();
+
+    @ManyToOne()
+    @JoinColumn(
+            name = "travel_id",
+            referencedColumnName = "id"
+    )@JsonIgnore
+    private Travel travel;
 
     public void addSeats(Seats seat){
         this.seats.add(seat);
