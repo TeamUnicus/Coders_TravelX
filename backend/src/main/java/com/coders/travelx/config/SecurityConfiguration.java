@@ -61,7 +61,8 @@ public class SecurityConfiguration {
                         "/api/v1/ml/**",
                         "/file/upload",
                         "/api/v1/admintest/**",
-                        "/api/v1/travel/**"
+                        "/api/v1/travel/**",
+                        "api/v1/user/book"
 
                 )
                 .permitAll()

@@ -41,8 +41,12 @@ public class User implements UserDetails {
 
     private boolean enabled;
 
-//    @OneToMany(mappedBy = "user")
-//    private List<Token> tokens;
+    @OneToMany(mappedBy = "user")
+    private List<Booking> bookings;
+
+    public void addBookings(Booking booking){
+        this.bookings.add(booking);
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

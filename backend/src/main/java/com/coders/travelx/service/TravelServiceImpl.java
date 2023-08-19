@@ -2,7 +2,7 @@ package com.coders.travelx.service;
 
 import com.coders.travelx.dto.NewFlightDto;
 import com.coders.travelx.dto.TravelDetailResponse;
-import com.coders.travelx.model.FlightDetails;
+import com.coders.travelx.model.FlightDetail;
 import com.coders.travelx.model.Seat;
 import com.coders.travelx.model.SeatId;
 import com.coders.travelx.model.Travel;
@@ -44,8 +44,8 @@ public class TravelServiceImpl implements TravelService{
     }
 
     @Override
-    public FlightDetails saveFlightDetails(NewFlightDto newFlightDto, Travel travel) {
-        FlightDetails flightDetails = new FlightDetails();
+    public FlightDetail saveFlightDetails(NewFlightDto newFlightDto, Travel travel) {
+        FlightDetail flightDetails = new FlightDetail();
 
         String dateFormatPattern = "yyyy/MM/dd";
         SimpleDateFormat dateFormat = new SimpleDateFormat(dateFormatPattern);
@@ -110,7 +110,7 @@ public class TravelServiceImpl implements TravelService{
         Optional<Travel> travelOptional = travelRepository.findByDestiAndStart(start.toLowerCase(), destination.toLowerCase());
         Travel travel = travelOptional.orElseThrow(()->new NoSuchElementException("no flights available"));
         List<TravelDetailResponse> travelDetailResponsesList =new ArrayList<>();
-        for (FlightDetails flight: travel.getFlightDetails()
+        for (FlightDetail flight: travel.getFlightDetails()
              ) {
             TravelDetailResponse travelDetailResponse = new TravelDetailResponse();
             travelDetailResponse.setArrivalDate(String.valueOf(flight.getArrivalTime().getDate()));
@@ -121,6 +121,7 @@ public class TravelServiceImpl implements TravelService{
             travelDetailResponse.setDepartureMinute(String.valueOf(flight.getDepartureTime().getMinutes()));
             travelDetailResponse.setFlightName(flight.getFlightName());
             travelDetailResponse.setPrice(flight.getPrice());
+            travelDetailResponse.setFlightId(String.valueOf(flight.getId()));
 
             travelDetailResponsesList.add(travelDetailResponse);
 
