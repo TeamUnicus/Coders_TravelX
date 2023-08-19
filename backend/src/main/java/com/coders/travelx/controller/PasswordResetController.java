@@ -3,7 +3,7 @@ package com.coders.travelx.controller;
 import com.coders.travelx.dto.ResetPasswordRequest;
 //import com.coders.travelx.event.PasswordResetRequestEvent;
 import com.coders.travelx.service.MailService;
-import com.coders.travelx.service.PasswordResetService;
+import com.coders.travelx.service.PasswordResetServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationEventPublisher;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class PasswordResetController {
 
-    private final PasswordResetService passwordResetService;
+    private final PasswordResetServiceImpl passwordResetService;
     private final ApplicationEventPublisher eventPublisher;
     private final MailService mailService;
 
