@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Seats {
+public class Seat {
 
     @EmbeddedId
     private SeatId seatId;

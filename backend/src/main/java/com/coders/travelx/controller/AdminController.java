@@ -59,9 +59,8 @@ public class AdminController {
     @PostMapping("/addFlightDetails")
     public String addFlightDetails(@RequestBody NewFlightDto newFlightDto){
         Travel travel = travelService.save(newFlightDto);
-        FlightDetails flightDetails = travelService.saveFlightDetails(newFlightDto);
-
-
+        FlightDetails flightDetails = travelService.saveFlightDetails(newFlightDto,travel);
+        return "added successfully";
 
     }
 

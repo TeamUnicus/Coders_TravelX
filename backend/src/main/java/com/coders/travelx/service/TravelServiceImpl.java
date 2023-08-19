@@ -2,6 +2,8 @@ package com.coders.travelx.service;
 
 import com.coders.travelx.dto.NewFlightDto;
 import com.coders.travelx.model.FlightDetails;
+import com.coders.travelx.model.Seat;
+import com.coders.travelx.model.SeatId;
 import com.coders.travelx.model.Travel;
 import com.coders.travelx.repository.FlightDetailsRepository;
 import com.coders.travelx.repository.SeatRepository;
@@ -35,7 +37,7 @@ public class TravelServiceImpl implements TravelService{
     }
 
     @Override
-    public FlightDetails saveFlightDetails(NewFlightDto newFlightDto) {
+    public FlightDetails saveFlightDetails(NewFlightDto newFlightDto, Travel travel) {
         FlightDetails flightDetails = new FlightDetails();
 
         String dateFormatPattern = "yyyy-MM-dd";
@@ -60,7 +62,35 @@ public class TravelServiceImpl implements TravelService{
             throw new RuntimeException(e);
         }
         flightDetails.setFlightName(newFlightDto.getFlightName());
+        flightDetails.setTravel(travel);
+        travel.addFlightDetails(flightDetails);
+        travelRepository.save(travel);
         flightDetailsRepository.save(flightDetails);
+        long flightId = flightDetails.getId();
+        int row = Integer.parseInt(newFlightDto.getSeatRows());
+        int col = Integer.parseInt(newFlightDto.getSeatCols());
+
+
+        //generate seat IDs
+        for (int i = 0; i<row;i++){
+            char rowChar = (char) ('A' + i);
+            for(int j = 0; j<col;j++){
+                String seatName = rowChar+Integer.toString(j);
+                SeatId seatId = new SeatId();
+                seatId.setFlightDetailsId(flightId);
+                seatId.setName(seatName);
+                Seat seat = new Seat();
+                seat.setSeatId(seatId);
+                seatRepository.save(seat);
+                flightDetails.addSeats(seat);
+                flightDetailsRepository.save(flightDetails);
+            }
+
+        }
+
+
+
+
         return flightDetails;
 
 

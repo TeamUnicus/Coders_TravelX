@@ -7,5 +7,5 @@ import com.coders.travelx.model.Travel;
 public interface TravelService {
     Travel save(NewFlightDto newFlightDto);
 
-    FlightDetails saveFlightDetails(NewFlightDto newFlightDto);
+    FlightDetails saveFlightDetails(NewFlightDto newFlightDto, Travel travel);
 }
