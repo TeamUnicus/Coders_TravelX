@@ -2,7 +2,7 @@ package com.coders.travelx.controller;
 
 import com.coders.travelx.S3.StorageService;
 import com.coders.travelx.dto.NewFlightDto;
-import com.coders.travelx.model.FlightDetails;
+import com.coders.travelx.model.FlightDetail;
 import com.coders.travelx.model.Travel;
 import com.coders.travelx.service.ImageService;
 import com.coders.travelx.model.Blog;
@@ -59,7 +59,7 @@ public class AdminController {
     @PostMapping("/addFlightDetails")
     public String addFlightDetails(@RequestBody NewFlightDto newFlightDto){
         Travel travel = travelService.save(newFlightDto);
-        FlightDetails flightDetails = travelService.saveFlightDetails(newFlightDto,travel);
+        FlightDetail flightDetails = travelService.saveFlightDetails(newFlightDto,travel);
         return "added successfully";
 
     }

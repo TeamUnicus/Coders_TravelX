@@ -12,13 +12,19 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Seat {
+public class Booking {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
 
-    @EmbeddedId
-    private SeatId seatId;
+    @ManyToOne()
+    @JoinColumn(
+            name = "user_id",
+            referencedColumnName = "id"
+    )@JsonIgnore
+    private User user;
 
-    private boolean available = true;
-
+    private String seatName;
 
     @ManyToOne()
     @JoinColumn(
@@ -26,6 +32,7 @@ public class Seat {
             referencedColumnName = "id"
     )@JsonIgnore
     private FlightDetail flightDetails;
+
 
 
 }
