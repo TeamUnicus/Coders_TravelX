@@ -59,7 +59,8 @@ public class SecurityConfiguration {
                         "/webjars/**",
                         "/swagger-ui.html",
                         "/api/v1/ml/**",
-                        "/file/upload"
+                        "/file/upload",
+                        "/api/v1/admintest/**"
                 )
                 .permitAll()
 

@@ -49,8 +49,12 @@ application:
 cloud:
   aws:
     credentials:
+
       access-key:
       secret-key:
+
+
+
     region:
       static: ap-southeast-1
     stack:
