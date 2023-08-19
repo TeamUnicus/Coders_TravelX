@@ -56,9 +56,14 @@ public class UserServiceImpl implements UserService {
             myBookingResponse.setDepartureDate(String.valueOf(booking.getFlightDetails().getDepartureTime().getDate()));
             myBookingResponse.setDepartureHour(String.valueOf(booking.getFlightDetails().getDepartureTime().getHours()));
             myBookingResponse.setDepartureMinute(String.valueOf(booking.getFlightDetails().getDepartureTime().getMinutes()));
+            myBookingResponse.setStart(booking.getFlightDetails().getTravel().getStart());
+            myBookingResponse.setDestination(booking.getFlightDetails().getTravel().getDestination());
+            myBookingResponse.setFlightName(booking.getFlightDetails().getFlightName());
+
+            myBookingResponseList.add(myBookingResponse);
 
         }
 
-        return null;
+        return myBookingResponseList;
     }
 }
