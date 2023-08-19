@@ -15,7 +15,10 @@ function App() {
   const lightTheme = createTheme({
     palette: {
       primary: blue,
-      secondary: indigo
+      secondary: indigo,
+      background: {
+        default: 'B1B8DE', 
+      },
     },
   });
   
@@ -27,6 +30,7 @@ function App() {
     <Route path="/" element={<Layout />}> 
     <Route path ="/" element ={<SignupLogInPage props = "signup"/>}/>
     <Route path ="/signup" element ={<SignupLogInPage props = "signup"/>}/>
+    <Route path ="/login" element ={<SignupLogInPage props = "login"/>}/>
 
         </Route>
 

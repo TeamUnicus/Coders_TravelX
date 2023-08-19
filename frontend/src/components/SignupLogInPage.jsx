@@ -3,6 +3,7 @@ import React from 'react'
 import SignupForm from './SignupForm'
 import LogInForm from './LogInForm'
 import Logo from '../assets/logo.png'
+import loginImage from '../assets/loginImage.png'
 
 const SignupLogInPage = ({props}) => {
  
@@ -16,9 +17,9 @@ const SignupLogInPage = ({props}) => {
                 </div>
             </div>  */}
             <div className="md:w-1/3 max-w-xl flex-1 flex-grow">
-                <div className="my-5 flex items-center">
+                <div className="my-5 flex items-center justify-center">
                     {/* <img src = {logo} alt="" width="120" height = "100"/> */}
-                    <img src={Logo} width="550" height = "500"/>
+                    <img src={loginImage} width="330" height = "300"/>
                     {/* <p className="mx-4 mb-0 text-center font-semibold text-slate-500 text-6xl">BIDCircle</p> */}
                     {/* <Header title = "BIDCIRCLE" subtitle=""/> */}
                 </div>
