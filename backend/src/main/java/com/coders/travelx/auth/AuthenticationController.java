@@ -44,7 +44,7 @@ public class AuthenticationController {
         return "Registration Successfull - Verification Email Sent";
     }
 
-    @GetMapping("/verifyRegistration")
+    @GetMapping("/verify-registration")
     public ResponseEntity<?> verifyRegistration(@RequestParam("code") String code) {
         String result = service.validateVerificationCode(code);
 
@@ -59,7 +59,7 @@ public class AuthenticationController {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid User");
     }
 
-    @GetMapping("/resendVerifyCode")
+    @GetMapping("/resend-verify-code")
     public ResponseEntity<String> resendVerificationCode(@RequestParam("code") String oldCode,
                                                          HttpServletRequest request) {
         VerificationCode verificationCode = service.generateNewVerificationCode(oldCode);
@@ -69,7 +69,7 @@ public class AuthenticationController {
     }
 
     private void resendVerificationCodeMail(User user, String applicationUrl, VerificationCode verificationCode) {
-        String url = applicationUrl + "/api/v1/auth/verifyRegistration?code=" +
+        String url = applicationUrl + "/api/v1/auth/verify-registration?code=" +
                 verificationCode.getCode();
 
         // Call your mail sending method here
