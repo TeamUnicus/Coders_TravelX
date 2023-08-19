@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Optional;
 
 @Service
 public class TravelServiceImpl implements TravelService{
@@ -29,9 +30,15 @@ public class TravelServiceImpl implements TravelService{
 
     @Override
     public Travel save(NewFlightDto newFlightDto) {
-        Travel travel = new Travel();
-        travel.setDestination(newFlightDto.getDestination());
-        travel.setStart(newFlightDto.getStart());
+        Optional<Travel> travelOptional = travelRepository
+                .findByDestiAndStart(newFlightDto.getStart(), newFlightDto.getDestination());
+        Travel travel = travelOptional.orElseGet(()->{
+            Travel travelNew = new Travel();
+            travelNew.setDestination(newFlightDto.getDestination());
+            travelNew.setStart(newFlightDto.getStart());
+            return travelNew;
+
+        });
         travelRepository.save(travel);
         return travel;
     }
