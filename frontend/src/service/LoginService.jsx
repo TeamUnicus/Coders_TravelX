@@ -1,11 +1,11 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8080";
+const API_URL = "http://localhost:8080/api/v1/auth";
 
 const login = (user) => {
     console.log(user);
   return axios
-    .post(API_URL + "/login", 
+    .post(API_URL + "/authenticate", 
      user
 )
     .then((response) => {
