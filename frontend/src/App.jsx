@@ -6,6 +6,7 @@ import { blue, cyan, indigo } from '@mui/material/colors';
 import RequireAuth from './components/RequireAuth';
 import SignupLogInPage from './components/SignupLogInPage';
 import Layout from './components/Layout';
+import Home from './components/User/Home';
 
 
 
@@ -31,6 +32,7 @@ function App() {
     <Route path ="/" element ={<SignupLogInPage props = "signup"/>}/>
     <Route path ="/signup" element ={<SignupLogInPage props = "signup"/>}/>
     <Route path ="/login" element ={<SignupLogInPage props = "login"/>}/>
+    <Route path='/home' element = {<Home/>}/>
 
         </Route>
 

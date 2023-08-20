@@ -41,10 +41,7 @@ const LogInForm = () => {
         console.log(response)
         const convertedRole = roles;
         const capitalRole = roles;
-        if (convertedRole!=login){
-            setErrorMessage(capitalRole+" dont have acces to "+login+" content");
-          
-        }if(accessToken){
+        if(accessToken){
             if (roles=="USER"){
               navigate("/")
             }else{
