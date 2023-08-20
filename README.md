@@ -1,27 +1,35 @@
-# React + TypeScript + Vite
+# TravelX
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## React Page Setup Instructions
+Follow these steps to set up a React page:
+___
+Prerequisites
+Ensure that you have Node.js and npm (Node Package Manager) installed on your system. You can check the installation by running the following commands:
+ <pre><code> node -v</code></pre>
+  <pre><code>npm -v</code></pre>
+## Project Setup
+Create a new React project by running the following command in your terminal:
 
-Currently, two official plugins are available:
+ <pre><code> npm create vite</code></pre>
+Then provide a name for the project (eg: my-react-page)
+Then choose react from next step
+Choose the language that you prefer (Javascript/ Typescript)
+Navigate to the project directory:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+  <pre><code>cd my-react-page</code></pre>
+After Creating Project or Cloning the existing Project
+Install project dependencies by running the following command:
 
-## Expanding the ESLint configuration
+  <pre><code>npm install</code></pre>
+Start the development server:
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+  <pre><code>npm run dev</code></pre>
+Open your web browser and visit http://localhost:5173/ to see the React page.
 
-- Configure the top-level `parserOptions` property like this:
+  
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Deployment
+To deploy the React page, build the optimized production-ready bundle by running the following command:
+  <pre><code>npm run build</code>
+The bundled files will be generated in the build directory, which can be deployed to a web server.
