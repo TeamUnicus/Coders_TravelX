@@ -102,6 +102,7 @@ public class AuthenticationService {
                 .accessToken(jwtToken)
                 .refreshToken(refreshToken)
                 .role(user.getRole())
+                .email(user.getEmail())
                 .build();
 
     }
@@ -123,6 +124,7 @@ public class AuthenticationService {
                 .accessToken(jwtToken)
                 .refreshToken(refreshToken)
                 .role(user.getRole())
+                .email(user.getEmail())
                 .build();
     }
 
