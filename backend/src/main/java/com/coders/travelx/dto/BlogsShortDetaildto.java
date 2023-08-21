@@ -7,4 +7,5 @@ public class BlogsShortDetaildto {
     private String title;
     private byte [] data;
 
+
 }
