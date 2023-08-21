@@ -1,0 +1,28 @@
+.fixed-card {
+    width: 400px;
+    height: 400px;
+    overflow: hidden;
+    /* Hide overflowing content */
+}
+
+.card-img-top {
+    object-fit: cover;
+    height: auto;
+    width: auto;
+    /* Set image height */
+}
+.card{
+    width: 400px;
+    height: 300px;
+    border-radius: 30px;
+    padding: 20px;
+}
+
+.card-body {
+    height: 250px;
+    width: 400px;
+    /* Set card body height */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}

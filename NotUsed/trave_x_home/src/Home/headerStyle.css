@@ -1,0 +1,30 @@
+.navbar {
+    padding-left: 25px;
+    padding-right: 25px;
+    background-color: #b1b8de !important;
+}
+
+.centered-search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.expandable-search {
+    border-radius: 60px;
+    width: 200% !important;
+    max-width: 50vh !important;
+    /* Adjust the maximum width as needed */
+}
+
+.profile-pic {
+    width: 40px;
+    height: 40px;
+    border: 2px solid white;
+    border-radius: 50%;
+    background-image: url("src/assets/images/profile.jpg");
+    /* Replace with your image path */
+    background-size: cover;
+    background-position: center;
+}
